@@ -8,7 +8,7 @@ public abstract class BaseEntity
     /// <summary>
     /// Идентификатор
     /// </summary>
-    private Guid Id { get; set; }
+    public Guid Id { get; set; }
     
     /// <summary>
     /// Установка идентификатора

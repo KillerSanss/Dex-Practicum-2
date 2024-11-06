@@ -1,3 +1,6 @@
+using Domain.Validation.Validators;
+using FluentValidation;
+
 namespace Domain.Entities;
 
 /// <summary>
@@ -47,5 +50,19 @@ public class Drug : BaseEntity
         Manufacturer = manufacturer;
         CountryCodeId = countryCodeId;
         Country = country;
+        
+        Validate();
+    }
+
+    private void Validate()
+    {
+        var validator = new DrugValidator();
+        var result = validator.Validate(this);
+
+        if (!result.IsValid)
+        {
+            var errors = string.Join(" || ", result.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
     }
 }

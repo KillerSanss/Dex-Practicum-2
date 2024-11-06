@@ -1,4 +1,6 @@
+using Domain.Validation.Validators;
 using Domain.ValueObjects;
+using FluentValidation;
 
 namespace Domain.Entities;
 
@@ -49,5 +51,19 @@ public class DrugStore : BaseEntity
         Number = number;
         Address = address;
         Phone = phone;
+        
+        Validate();
+    }
+    
+    private void Validate()
+    {
+        var validator = new DrugStoreValidator();
+        var result = validator.Validate(this);
+
+        if (!result.IsValid)
+        {
+            var errors = string.Join(" || ", result.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
     }
 }

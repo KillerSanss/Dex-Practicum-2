@@ -1,3 +1,6 @@
+using Domain.Validation.Validators;
+using FluentValidation;
+
 namespace Domain.Entities;
 
 /// <summary>
@@ -58,5 +61,19 @@ public class DrugItem : BaseEntity
         DrugStore = drugStore;
         Price = price;
         Amount = amount;
+
+        Validate();
+    }
+    
+    private void Validate()
+    {
+        var validator = new DrugItemValidator();
+        var result = validator.Validate(this);
+
+        if (!result.IsValid)
+        {
+            var errors = string.Join(" || ", result.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
     }
 }
