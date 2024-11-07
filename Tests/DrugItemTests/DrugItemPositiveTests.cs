@@ -24,8 +24,8 @@ public class DrugItemPositiveTests
         var drugId = drug.Id;
         var drugStore = DrugStoreGenerator.GenerateDrugStore();
         var drugStoreId = drugStore.Id;
-        var price = _faker.Random.Decimal();
-        var amount = _faker.Random.Int(1000);
+        var price = Math.Round(_faker.Random.Decimal(), 2);
+        var amount = _faker.Random.Int(0, 10000);
         
         // Act
         var drugItem = new DrugItem(drugId, drug, drugStoreId, drugStore, price, amount);

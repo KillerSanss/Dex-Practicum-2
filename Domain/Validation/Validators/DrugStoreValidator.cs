@@ -9,7 +9,9 @@ public class DrugStoreValidator : AbstractValidator<DrugStore>
     {
         RuleFor(d => d.DrugNetwork)
             .NotNull().WithMessage(ValidationMessages.NullError)
-            .NotEmpty().WithMessage(ValidationMessages.EmptyError);
+            .NotEmpty().WithMessage(ValidationMessages.EmptyError)
+            .MinimumLength(2).WithMessage(ValidationMessages.MinimumLengthError)
+            .MaximumLength(100).WithMessage(ValidationMessages.MaximumLengthError);
         
         RuleFor(d => d.Number)
             .NotNull().WithMessage(ValidationMessages.NullError)

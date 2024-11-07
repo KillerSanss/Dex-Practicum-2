@@ -26,11 +26,13 @@ public class DrugItemValidator : AbstractValidator<DrugItem>
         RuleFor(d => d.Price)
             .NotNull().WithMessage(ValidationMessages.NullError)
             .NotEmpty().WithMessage(ValidationMessages.EmptyError)
-            .GreaterThan(0).WithMessage(ValidationMessages.NegativeOrZeroNumberError);
+            .GreaterThan(0).WithMessage(ValidationMessages.NegativeOrZeroNumberError)
+            .PrecisionScale(10, 2, true).WithMessage(ValidationMessages.DecimalPlacesError);
         
         RuleFor(d => d.Amount)
             .NotNull().WithMessage(ValidationMessages.NullError)
             .NotEmpty().WithMessage(ValidationMessages.EmptyError)
-            .GreaterThan(0).WithMessage(ValidationMessages.NegativeOrZeroNumberError);
+            .GreaterThanOrEqualTo(0).WithMessage(ValidationMessages.NegativeNumberError)
+            .LessThanOrEqualTo(10000).WithMessage(ValidationMessages.GreaterThenNumberError);
     }
 }

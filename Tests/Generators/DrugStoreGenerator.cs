@@ -13,7 +13,7 @@ public abstract class DrugStoreGenerator
         .CustomInstantiator(f => new DrugStore(
             f.Random.String2(10),
             f.Random.Number(1, 1000),
-            new Address(f.Address.City(), f.Address.StreetName(), f.Address.BuildingNumber()),
+            new Address(f.Address.City(), f.Address.StreetName(), f.Random.Int(1, 100), f.Random.Int(10000, 999999)),
             f.Phone.PhoneNumber("373########")
         ));
     

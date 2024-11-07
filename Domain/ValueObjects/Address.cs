@@ -1,3 +1,6 @@
+using Domain.Validation.Validators;
+using FluentValidation;
+
 namespace Domain.ValueObjects;
 
 /// <summary>
@@ -18,7 +21,12 @@ public class Address
     /// <summary>
     /// Дом
     /// </summary>
-    public string House { get; private set; }
+    public int House { get; private set; }
+    
+    /// <summary>
+    /// Почтовый индекс
+    /// </summary>
+    public int PostalCode { get; private set; }
 
     /// <summary>
     /// Конструктор
@@ -26,10 +34,26 @@ public class Address
     /// <param name="city">Город.</param>
     /// <param name="street">Улица.</param>
     /// <param name="house">Дом.</param>
-    public Address(string city, string street, string house)
+    /// <param name="postalCode">Почтовый индекс.</param>
+    public Address(string city, string street, int house, int postalCode)
     {
         City = city;
         Street = street;
         House = house;
+        PostalCode = postalCode;
+        
+        Validate();
+    }
+    
+    private void Validate()
+    {
+        var validator = new AddressValidator();
+        var result = validator.Validate(this);
+
+        if (!result.IsValid)
+        {
+            var errors = string.Join(" || ", result.Errors.Select(x => x.ErrorMessage));
+            throw new ValidationException(errors);
+        }
     }
 }

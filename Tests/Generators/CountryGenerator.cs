@@ -11,7 +11,7 @@ public abstract class CountryGenerator
     private static readonly Faker<Country> Faker = new Faker<Country>()
         .CustomInstantiator(f => new Country(
             f.Random.String2(10),
-            f.Random.Number(1, 1000).ToString()
+            f.PickRandom(Country.ValidCountryCodes.ToList())
         ));
     
     /// <summary>

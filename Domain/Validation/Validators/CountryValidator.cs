@@ -11,10 +11,21 @@ public class CountryValidator : AbstractValidator<Country>
             .NotNull().WithMessage(ValidationMessages.NullError)
             .NotEmpty().WithMessage(ValidationMessages.EmptyError)
             .MinimumLength(2).WithMessage(ValidationMessages.MinimumLengthError)
-            .MaximumLength(20).WithMessage(ValidationMessages.MaximumLengthError);
+            .MaximumLength(100).WithMessage(ValidationMessages.MaximumLengthError)
+            .Matches(RegexPatterns.LettersPattern).WithMessage(ValidationMessages.OnlyLettersError);
 
         RuleFor(d => d.Code)
             .NotNull().WithMessage(ValidationMessages.NullError)
-            .NotEmpty().WithMessage(ValidationMessages.EmptyError);
+            .NotEmpty().WithMessage(ValidationMessages.EmptyError)
+            .Length(2,2).WithMessage(ValidationMessages.StrictLengthError)
+            .Must(code => !string.IsNullOrEmpty(code)
+                          && code.All(char.IsUpper)
+                          && code.All(char.IsLetter)
+                          && IsValidCountryCode(code)).WithMessage(ValidationMessages.CountryCodeError);
+    }
+    
+    private static bool IsValidCountryCode(string code)
+    {
+        return Country.ValidCountryCodes.Contains(code);
     }
 }

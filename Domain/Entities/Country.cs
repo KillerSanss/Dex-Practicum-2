@@ -49,4 +49,15 @@ public class Country : BaseEntity
             throw new ValidationException(errors);
         }
     }
+    
+    /// <summary>
+    /// Список ISO кодов стран
+    /// </summary>
+    public static readonly HashSet<string> ValidCountryCodes =
+    [
+        "US", "RU", "GB", "DE", "FR", "IN", "CA", "BR", "JP", "AU",
+        "CN", "ZA", "IT", "ES", "PL", "KR", "MX", "NG", "AR", "SE",
+        "FI", "NO", "TR", "EG", "KR", "NL", "CH", "SE", "AT", "PT",
+        "DK", "GR", "FI", "BE", "CO", "TH", "PH", "SG", "MY", "UA"
+    ];
 }

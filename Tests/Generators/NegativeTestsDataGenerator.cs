@@ -45,10 +45,10 @@ public class NegativeTestsDataGenerator
     {
         return new List<object[]>
         {
-            new object[] {null, Faker.Random.Int(1, 1000), new Address(Faker.Address.City(), Faker.Address.StreetName(), Faker.Address.BuildingNumber()), Faker.Phone.PhoneNumber("373########") },
-            new object[] {Faker.Random.String2(10), -1, new Address(Faker.Address.City(), Faker.Address.StreetName(), Faker.Address.BuildingNumber()), Faker.Phone.PhoneNumber("373########") },
+            new object[] {null, Faker.Random.Int(1, 1000), new Address(Faker.Address.City(), Faker.Address.StreetName(), Faker.Random.Int(1, 100), Faker.Random.Int(10000, 999999)), Faker.Phone.PhoneNumber("373########") },
+            new object[] {Faker.Random.String2(10), -1, new Address(Faker.Address.City(), Faker.Address.StreetName(), Faker.Random.Int(1, 100), Faker.Random.Int(10000, 999999)), Faker.Phone.PhoneNumber("373########") },
             new object[] {Faker.Random.String2(10), Faker.Random.Int(1, 1000), null, Faker.Phone.PhoneNumber("373########") },
-            new object[] {Faker.Random.String2(10), Faker.Random.Int(1, 1000), new Address(Faker.Address.City(), Faker.Address.StreetName(), Faker.Address.BuildingNumber()), null }
+            new object[] {Faker.Random.String2(10), Faker.Random.Int(1, 1000), new Address(Faker.Address.City(), Faker.Address.StreetName(), Faker.Random.Int(1, 100), Faker.Random.Int(10000, 999999)), null }
         };
     }
     
@@ -68,6 +68,20 @@ public class NegativeTestsDataGenerator
             new object[] {drug.Id, drug, drugStore.Id, null, Faker.Random.Decimal(1), Faker.Random.Int(1, 1000) },
             new object[] {drug.Id, drug, drugStore.Id, drugStore, -1, Faker.Random.Int(1, 1000) },
             new object[] {drug.Id, drug, drugStore.Id, drugStore, Faker.Random.Decimal(1), -1 }
+        };
+    }
+    
+    /// <summary>
+    /// Генерация данных для исключения ValidationException у значимого объекта Address
+    /// </summary>
+    public static IEnumerable<object[]> GetAddressValidationExceptionProperties()
+    {
+        return new List<object[]>
+        {
+            new object[] {null, Faker.Address.StreetName(), Faker.Random.Int(1, 100), Faker.Random.Int(10000, 999999) },
+            new object[] {Faker.Address.City(), null, Faker.Random.Int(1, 100), Faker.Random.Int(10000, 999999) },
+            new object[] {Faker.Address.City(), Faker.Address.StreetName(), null, Faker.Random.Int(10000, 999999) },
+            new object[] {Faker.Address.City(), Faker.Address.StreetName(), Faker.Random.Int(1, 100), null }
         };
     }
 }
