@@ -72,6 +72,35 @@ public class NegativeTestsDataGenerator
     }
     
     /// <summary>
+    /// Генерация данных для исключения ValidationException у сущности FavouriteDrug
+    /// </summary>
+    public static IEnumerable<object[]> GetFavouriteDrugValidationExceptionProperties()
+    {
+        var profile = ProfileGenerator.GenerateProfile();
+        var drug = DrugGenerator.GenerateDrug();
+        
+        return new List<object[]>
+        {
+            new object[] {null, profile, drug.Id, drug },
+            new object[] {profile.Id, null, drug.Id, drug  },
+            new object[] {profile.Id, profile, null, drug},
+            new object[] {profile.Id, profile, drug.Id, null }
+        };
+    }
+    
+    /// <summary>
+    /// Генерация данных для исключения ValidationException у Profile
+    /// </summary>
+    public static IEnumerable<object[]> GetProfileValidationExceptionProperties()
+    {
+        return new List<object[]>
+        {
+            new object[] {null, new Email(Faker.Internet.Email()) },
+            new object[] {Faker.Random.Int(100000, 9999999), null }
+        };
+    }
+    
+    /// <summary>
     /// Генерация данных для исключения ValidationException у значимого объекта Address
     /// </summary>
     public static IEnumerable<object[]> GetAddressValidationExceptionProperties()
@@ -82,6 +111,17 @@ public class NegativeTestsDataGenerator
             new object[] {Faker.Address.City(), null, Faker.Random.Int(1, 100), Faker.Random.Int(10000, 999999) },
             new object[] {Faker.Address.City(), Faker.Address.StreetName(), null, Faker.Random.Int(10000, 999999) },
             new object[] {Faker.Address.City(), Faker.Address.StreetName(), Faker.Random.Int(1, 100), null }
+        };
+    }
+    
+    /// <summary>
+    /// Генерация данных для исключения ValidationException у значимого объекта Email
+    /// </summary>
+    public static IEnumerable<object[]> GetEmailValidationExceptionProperties()
+    {
+        return new List<object[]>
+        {
+            new object[] {Faker.Random.String2(10)}
         };
     }
 }

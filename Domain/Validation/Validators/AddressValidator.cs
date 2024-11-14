@@ -3,6 +3,9 @@ using FluentValidation;
 
 namespace Domain.Validation.Validators;
 
+/// <summary>
+/// Валидация адреса
+/// </summary>
 public class AddressValidator : AbstractValidator<Address>
 {
     public AddressValidator()

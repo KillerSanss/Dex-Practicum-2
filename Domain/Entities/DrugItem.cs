@@ -1,3 +1,4 @@
+using Domain.DomainEvents;
 using Domain.Validation.Validators;
 using FluentValidation;
 
@@ -36,7 +37,7 @@ public class DrugItem : BaseEntity
     /// <summary>
     /// Кол-во
     /// </summary>
-    public int Amount { get; set; }
+    public double Amount { get; set; }
 
     /// <summary>
     /// Конструктор
@@ -62,6 +63,19 @@ public class DrugItem : BaseEntity
         Price = price;
         Amount = amount;
 
+        Validate();
+    }
+
+    /// <summary>
+    /// Обновление кол-ва DrugItem
+    /// </summary>
+    /// <param name="amount">Новое кол-во.</param>
+    public void UpdateDrugAmount(double amount)
+    {
+        Amount = amount;
+        
+        AddDomainEvent(new DrugItemUpdatedEvent(this.Id, amount));
+        
         Validate();
     }
     

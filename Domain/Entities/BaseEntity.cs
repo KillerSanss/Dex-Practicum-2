@@ -1,3 +1,5 @@
+using Domain.Interfaces;
+
 namespace Domain.Entities;
 
 /// <summary>
@@ -9,6 +11,11 @@ public abstract class BaseEntity
     /// Идентификатор
     /// </summary>
     public Guid Id { get; set; }
+
+    /// <summary>
+    /// Список доменных событий
+    /// </summary>
+    private List<IDomainEvent> DomainEvents { get; set; } = new();
     
     /// <summary>
     /// Установка идентификатора
@@ -16,6 +23,32 @@ public abstract class BaseEntity
     protected BaseEntity()
     {
         Id = Guid.NewGuid();
+    }
+
+    /// <summary>
+    /// Добавление события в список
+    /// </summary>
+    /// <param name="domainEvent">Событие.</param>
+    protected void AddDomainEvent(IDomainEvent domainEvent)
+    {
+        DomainEvents.Add(domainEvent);
+    }
+
+    /// <summary>
+    /// Получение списка событий
+    /// </summary>
+    /// <returns>Список событий.</returns>
+    public IReadOnlyList<IDomainEvent> GetDomainEvents()
+    {
+        return DomainEvents.AsReadOnly();
+    }
+
+    /// <summary>
+    /// Очистка событий
+    /// </summary>
+    public void ClearDomainEvents()
+    {
+        DomainEvents.Clear();
     }
     
     /// <summary>

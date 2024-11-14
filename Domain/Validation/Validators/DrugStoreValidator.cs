@@ -3,6 +3,9 @@ using FluentValidation;
 
 namespace Domain.Validation.Validators;
 
+/// <summary>
+/// Валидация аптеки
+/// </summary>
 public class DrugStoreValidator : AbstractValidator<DrugStore>
 {
     public DrugStoreValidator()

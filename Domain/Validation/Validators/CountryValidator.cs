@@ -3,6 +3,9 @@ using FluentValidation;
 
 namespace Domain.Validation.Validators;
 
+/// <summary>
+/// Валидация страны
+/// </summary>
 public class CountryValidator : AbstractValidator<Country>
 {
     public CountryValidator()

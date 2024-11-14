@@ -15,4 +15,5 @@ public static class ValidationMessages
     public const string DecimalPlacesError = "{PropertyName} не должен содержать более 2х знаков после запятой";
     public const string OnlyNumbersError = "{PropertyName} должен содержать только цифры";
     public const string CountryCodeError = "Неверный код страны";
+    public const string EmailError = "Неверный формат электронной почты. Пример: example@gmail.com";
 }
