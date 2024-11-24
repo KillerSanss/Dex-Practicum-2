@@ -55,6 +55,27 @@ public class DrugStore : BaseEntity
         Validate();
     }
     
+    /// <summary>
+    /// Метод обновления DrugStore
+    /// </summary>
+    /// <param name="drugNetwork">Аптечная сеть.</param>
+    /// <param name="number">Номер аптеки в сети.</param>
+    /// <param name="address">Адрес.</param>
+    /// <param name="phone">Номер телефона.</param>
+    public void Update(
+        string drugNetwork,
+        int number,
+        Address address,
+        string phone)
+    {
+        DrugNetwork = drugNetwork;
+        Number = number;
+        Address = address;
+        Phone = phone;
+        
+        Validate();
+    }
+    
     private void Validate()
     {
         var validator = new DrugStoreValidator();

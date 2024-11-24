@@ -7,7 +7,7 @@ namespace Domain.Entities;
 /// <summary>
 /// Сущность профиля
 /// </summary>
-public class Profile : BaseEntity
+public class UserProfile : BaseEntity
 {
     /// <summary>
     /// Внешний идентификатор (телеграм)
@@ -29,7 +29,22 @@ public class Profile : BaseEntity
     /// </summary>
     /// <param name="externalId">Внешний идентификатор (телеграм).</param>
     /// <param name="email">Электронная почта.</param>
-    public Profile(
+    public UserProfile(
+        string externalId,
+        Email email)
+    {
+        ExternalId = externalId;
+        Email = email;
+        
+        Validate();
+    }
+
+    /// <summary>
+    /// Метод обновления UserProfile
+    /// </summary>
+    /// <param name="externalId">Внешний идентификатор (телеграм).</param>
+    /// <param name="email">Электронная почта.</param>
+    public void Update(
         string externalId,
         Email email)
     {
@@ -41,7 +56,7 @@ public class Profile : BaseEntity
     
     private void Validate()
     {
-        var validator = new ProfileValidator();
+        var validator = new UserProfileValidator();
         var result = validator.Validate(this);
 
         if (!result.IsValid)

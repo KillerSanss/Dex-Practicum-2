@@ -17,7 +17,7 @@ public class FavouriteDrug : BaseEntity
     /// <summary>
     /// Профиль
     /// </summary>
-    public Profile Profile { get; set; }
+    public UserProfile UserProfile { get; set; }
     
     /// <summary>
     /// Идентификатор лекарства
@@ -43,21 +43,48 @@ public class FavouriteDrug : BaseEntity
     /// Конструктор
     /// </summary>
     /// <param name="profileId">Идентификатор профиля.</param>
-    /// <param name="profile">Профиль.</param>
+    /// <param name="userProfile">Профиль.</param>
     /// <param name="drugId">Идентификатор лекарства.</param>
     /// <param name="drug">Лекарство.</param>
     /// <param name="drugStoreId">Идентификатор аптеки.</param>
     /// <param name="drugStore">Аптека.</param>
     public FavouriteDrug(
         Guid profileId,
-        Profile profile,
+        UserProfile userProfile,
         Guid drugId,
         Drug drug,
         Guid drugStoreId,
         DrugStore drugStore)
     {
         ProfileId = profileId;
-        Profile = profile;
+        UserProfile = userProfile;
+        DrugId = drugId;
+        Drug = drug;
+        DrugStoreId = drugStoreId;
+        DrugStore = drugStore;
+        
+        Validate();
+    }
+
+    /// <summary>
+    /// Метод обновления FavouriteDrug
+    /// </summary>
+    /// <param name="profileId">Идентификатор профиля.</param>
+    /// <param name="userProfile">Профиль.</param>
+    /// <param name="drugId">Идентификатор лекарства.</param>
+    /// <param name="drug">Лекарство.</param>
+    /// <param name="drugStoreId">Идентификатор аптеки.</param>
+    /// <param name="drugStore">Аптека.</param>
+    public void Update(
+        Guid profileId,
+        UserProfile userProfile,
+        Guid drugId,
+        Drug drug,
+        Guid drugStoreId,
+        DrugStore drugStore)
+    {
+        ProfileId = profileId;
+        UserProfile = userProfile;
         DrugId = drugId;
         Drug = drug;
         DrugStoreId = drugStoreId;

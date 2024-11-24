@@ -17,19 +17,19 @@ public class FavouriteDrugPositiveTests
     public void Add_FavouriteDrug_ReturnNewFavouriteDrug()
     {
         // Arrange
-        var profile = ProfileGenerator.GenerateProfile();
-        var profileId = profile.Id;
+        var userProfile = UserProfileGenerator.GenerateUserProfile();
+        var profileId = userProfile.Id;
         var drug = DrugGenerator.GenerateDrug();
         var drugId = drug.Id;
         var drugStore = DrugStoreGenerator.GenerateDrugStore();
         var drugStoreId = drugStore.Id;
         
         // Act
-        var favouriteDrug = new FavouriteDrug(profileId, profile, drugId, drug, drugStoreId, drugStore);
+        var favouriteDrug = new FavouriteDrug(profileId, userProfile, drugId, drug, drugStoreId, drugStore);
 
         // Assert
         favouriteDrug.ProfileId.Should().Be(profileId);
-        favouriteDrug.Profile.Should().Be(profile);
+        favouriteDrug.UserProfile.Should().Be(userProfile);
         favouriteDrug.DrugId.Should().Be(drugId);
         favouriteDrug.Drug.Should().Be(drug);
         favouriteDrug.DrugStoreId.Should().Be(drugStoreId);

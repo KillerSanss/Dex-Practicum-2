@@ -53,6 +53,27 @@ public class Drug : BaseEntity
         
         Validate();
     }
+    
+    /// <summary>
+    /// Метод обновления Drug
+    /// </summary>
+    /// <param name="name">Название.</param>
+    /// <param name="manufacturer">Изготовитель.</param>
+    /// <param name="countryCodeId">Код страны - страна изготовитель.</param>
+    /// <param name="country">Страна.</param>
+    public void Update(
+        string name,
+        string manufacturer,
+        string countryCodeId,
+        Country country)
+    {
+        Name = name;
+        Manufacturer = manufacturer;
+        CountryCodeId = countryCodeId;
+        Country = country;
+        
+        Validate();
+    }
 
     private void Validate()
     {

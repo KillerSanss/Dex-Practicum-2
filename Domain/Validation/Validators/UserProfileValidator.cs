@@ -6,9 +6,9 @@ namespace Domain.Validation.Validators;
 /// <summary>
 /// Валидация профиля
 /// </summary>
-public class ProfileValidator : AbstractValidator<Profile>
+public class UserProfileValidator : AbstractValidator<UserProfile>
 {
-    public ProfileValidator()
+    public UserProfileValidator()
     {
         RuleFor(d => d.ExternalId)
             .NotNull().WithMessage(ValidationMessages.NullError)

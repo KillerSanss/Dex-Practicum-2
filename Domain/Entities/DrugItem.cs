@@ -54,7 +54,34 @@ public class DrugItem : BaseEntity
         Guid drugStoreId,
         DrugStore drugStore,
         decimal price,
-        int amount)
+        double amount)
+    {
+        DrugId = drugId;
+        Drug = drug;
+        DrugStoreId = drugStoreId;
+        DrugStore = drugStore;
+        Price = price;
+        Amount = amount;
+
+        Validate();
+    }
+
+    /// <summary>
+    /// Метод обновления DrugItem
+    /// </summary>
+    /// <param name="drugId">Идентификатор лекарства.</param>
+    /// <param name="drug">Лекарство.</param>
+    /// <param name="drugStoreId">Идентификатор аптеки.</param>
+    /// <param name="drugStore">Аптека.</param>
+    /// <param name="price">Цена.</param>
+    /// <param name="amount">Кол-во.</param>
+    public void Update(
+        Guid drugId,
+        Drug drug,
+        Guid drugStoreId,
+        DrugStore drugStore,
+        decimal price,
+        double amount)
     {
         DrugId = drugId;
         Drug = drug;

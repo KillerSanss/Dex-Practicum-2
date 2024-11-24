@@ -38,6 +38,21 @@ public class Country : BaseEntity
         Validate();
     }
     
+    /// <summary>
+    /// Метод обновления Drug
+    /// </summary>
+    /// <param name="name">Название.</param>
+    /// <param name="code">Код страны.</param>
+    public void Update(
+        string name,
+        string code)
+    {
+        Name = name;
+        Code = code;
+
+        Validate();
+    }
+    
     private void Validate()
     {
         var validator = new CountryValidator();

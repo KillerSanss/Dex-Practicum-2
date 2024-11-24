@@ -76,22 +76,22 @@ public class NegativeTestsDataGenerator
     /// </summary>
     public static IEnumerable<object[]> GetFavouriteDrugValidationExceptionProperties()
     {
-        var profile = ProfileGenerator.GenerateProfile();
+        var userProfile = UserProfileGenerator.GenerateUserProfile();
         var drug = DrugGenerator.GenerateDrug();
         
         return new List<object[]>
         {
-            new object[] {null, profile, drug.Id, drug },
-            new object[] {profile.Id, null, drug.Id, drug  },
-            new object[] {profile.Id, profile, null, drug},
-            new object[] {profile.Id, profile, drug.Id, null }
+            new object[] {null, userProfile, drug.Id, drug },
+            new object[] {userProfile.Id, null, drug.Id, drug  },
+            new object[] {userProfile.Id, userProfile, null, drug},
+            new object[] {userProfile.Id, userProfile, drug.Id, null }
         };
     }
     
     /// <summary>
-    /// Генерация данных для исключения ValidationException у Profile
+    /// Генерация данных для исключения ValidationException у UserProfile
     /// </summary>
-    public static IEnumerable<object[]> GetProfileValidationExceptionProperties()
+    public static IEnumerable<object[]> GetUserProfileValidationExceptionProperties()
     {
         return new List<object[]>
         {

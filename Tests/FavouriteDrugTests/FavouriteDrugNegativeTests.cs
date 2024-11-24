@@ -17,14 +17,14 @@ public class FavouriteDrugNegativeTests
     /// Проверка, что у сущности FavouriteDrug выбрасывается ValidationException.
     /// </summary>
     /// <param name="profileId">Идентификатор профиля.</param>
-    /// <param name="profile">Профиль.</param>
+    /// <param name="userProfile">Профиль.</param>
     /// <param name="drugId">Идентификатор лекарства.</param>
     /// <param name="drug">Лекарство.</param>
     [Theory]
     [MemberData(nameof(TestFavouriteDrugValidationExceptionData))]
     public void Add_FavouriteDrugProperties_ThrowValidationException(
         Guid profileId,
-        Profile profile,
+        UserProfile userProfile,
         Guid drugId,
         Drug drug)
     {
@@ -33,7 +33,7 @@ public class FavouriteDrugNegativeTests
         var drugStoreId = drugStore.Id;
         
         // Act
-        var action = () => new FavouriteDrug(profileId, profile, drugId, drug, drugStoreId, drugStore);
+        var action = () => new FavouriteDrug(profileId, userProfile, drugId, drug, drugStoreId, drugStore);
 
         // Assert
         action.Should().Throw<ValidationException>();

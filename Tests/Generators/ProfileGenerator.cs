@@ -5,12 +5,12 @@ using Domain.ValueObjects;
 namespace Tests.Generators;
 
 /// <summary>
-/// Генератор сущности Profile для тестов
+/// Генератор сущности UserProfile для тестов
 /// </summary>
-public class ProfileGenerator
+public class UserProfileGenerator
 {
-    private static readonly Faker<Profile> Faker = new Faker<Profile>()
-        .CustomInstantiator(f => new Profile(
+    private static readonly Faker<UserProfile> Faker = new Faker<UserProfile>()
+        .CustomInstantiator(f => new UserProfile(
             f.Random.Int(1000000, 9999999).ToString(),
             new Email(f.Internet.Email())
         ));
@@ -19,7 +19,7 @@ public class ProfileGenerator
     /// Генерация профиля
     /// </summary>
     /// <returns>Профиль.</returns>
-    public static Profile GenerateProfile()
+    public static UserProfile GenerateUserProfile()
     {
         return Faker.Generate();
     }

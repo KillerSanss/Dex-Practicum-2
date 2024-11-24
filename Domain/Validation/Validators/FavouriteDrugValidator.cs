@@ -14,7 +14,7 @@ public class FavouriteDrugValidator : AbstractValidator<FavouriteDrug>
             .NotNull().WithMessage(ValidationMessages.NullError)
             .NotEmpty().WithMessage(ValidationMessages.EmptyError);
 
-        RuleFor(d => d.Profile)
+        RuleFor(d => d.UserProfile)
             .NotNull().WithMessage(ValidationMessages.NullError)
             .NotEmpty().WithMessage(ValidationMessages.EmptyError);
 
