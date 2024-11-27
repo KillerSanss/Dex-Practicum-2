@@ -65,4 +65,8 @@ public class UserProfile : BaseEntity
             throw new ValidationException(errors);
         }
     }
+    
+    public UserProfile()
+    {
+    }
 }

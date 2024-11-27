@@ -75,4 +75,8 @@ public class Country : BaseEntity
         "FI", "NO", "TR", "EG", "KR", "NL", "CH", "SE", "AT", "PT",
         "DK", "GR", "FI", "BE", "CO", "TH", "PH", "SG", "MY", "UA"
     ];
+
+    public Country()
+    {
+    }
 }

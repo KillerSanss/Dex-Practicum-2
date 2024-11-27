@@ -117,4 +117,8 @@ public class DrugItem : BaseEntity
             throw new ValidationException(errors);
         }
     }
+    
+    public DrugItem()
+    {
+    }
 }
