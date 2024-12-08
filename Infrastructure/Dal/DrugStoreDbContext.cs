@@ -1,5 +1,7 @@
 using Domain.Entities;
+using Infrastructure.Dal.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Dal;
 
@@ -8,6 +10,8 @@ namespace Infrastructure.Dal;
 /// </summary>
 public class DrugStoreDbContext : DbContext
 {
+    private readonly DatabaseSettings _options;
+    
     /// <summary>
     /// Сущность профиля
     /// </summary>
@@ -39,10 +43,11 @@ public class DrugStoreDbContext : DbContext
     public DbSet<FavouriteDrug> FavouriteDrugs { get; init; }
     
     /// <summary>
-    /// Конструктор
+    /// Конструктор с получением настроек базы данных
     /// </summary>
-    public DrugStoreDbContext(DbContextOptions<DrugStoreDbContext> options) : base(options)
+    public DrugStoreDbContext(IOptions<DatabaseSettings> options)
     {
+        _options = options.Value;
     }
     
     /// <summary>
@@ -59,8 +64,10 @@ public class DrugStoreDbContext : DbContext
     {
         base.OnConfiguring(optionsBuilder);
 
-        optionsBuilder.UseNpgsql(
-            "User ID=postgres;Password=sans;Host=localhost;Port=5432;Database=DrugStore;");
+        optionsBuilder.UseNpgsql(_options.ConnectionString, options =>
+        {
+            options.CommandTimeout(_options.CommandTimeout);
+        });
     }
 
     /// <summary>
