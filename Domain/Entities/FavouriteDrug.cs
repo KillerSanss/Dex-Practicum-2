@@ -104,4 +104,8 @@ public class FavouriteDrug : BaseEntity
             throw new ValidationException(errors);
         }
     }
+    
+    public FavouriteDrug()
+    {
+    }
 }

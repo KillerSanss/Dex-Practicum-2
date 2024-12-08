@@ -86,4 +86,8 @@ public class Drug : BaseEntity
             throw new ValidationException(errors);
         }
     }
+    
+    public Drug()
+    {
+    }
 }
